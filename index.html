@@ -1,51 +1,48 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="eUprava_files/app_002.css">
-    <title>This is the title of the webpage!</title>
-  </head>
-  <body>
-    <h1><a href="/">euprava.gov.rs</a></h1>
-    <a href="" class="mobile-handle"></a>
-    <a href="" class="">Моја еУправа</a>  
-    <h2 class="to-center main-text">Дигитални зелени сертификат</h2>
-    <p class="to-center h3 small-text">Потврда о извршеној вакцинацији против COVID-19 и резултатима тестирања</p>
-    <h2 class="to-center main-text">Digital green certificate</h2>
-    <p class="to-center h3 small-text textMargin">Certificate of vaccination against COVID-19 and test results</p>
-    <div class="info-container">
-        <div class="container-row">
-            <label class="label-info">Име / Name:</label><span id="user_name" class="span-info"></span>
-        </div>
-        <div class="container-row">
-            <label class="label-info">Презиме / Surname:</label><span id="user_last_name" class="span-info"></span>
-        </div>
-        <div class="container-double-row">
-            <label class="label-info">Датум рођења / Date of birth:</label><span id="user_birth" class="span-infoBD"></span>
-        </div>
-        <div class="container-row">
-            <label class="label-info">Статус / Status:</label><span class="span-info">зелено / green</span><img class="imgType" src="/eUprava_files/passed.png">
-        </div>
-    </div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<title>Cross-Browser QRCode generator for Javascript</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="qrcode.js"></script>
+</head>
+<body>
+<input id="name" type="text" placeholder="Ime"><br>
+<input id="last_name" type="text" placeholder="Prezime"><br>
+<input id="birthday" type="date" placeholder="Datum rodjenja"><br>
+<button id="makeQrCode">napravi mi ulaznicu</button><br>
+<div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
 
-  </body>
-  <script>
-    function getUrlVars() {
-    var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
-    function(m,key,value) {
-      vars[key] = value;
-    });
-    return vars;
-  }
-  function setText(id,newvalue) {
-  var s= document.getElementById(id);
-  s.innerHTML = newvalue;
-}    
-window.onload=function() { 
-  setText("user_name",getUrlVars()["n"]);
-  setText("user_last_name",decodeURI(getUrlVars()["l"]));
-  setText("user_birth",getUrlVars()["b"]);
+<script type="text/javascript">
+var qrcode = new QRCode(document.getElementById("qrcode"), {
+	width : 300,
+	height : 300
+});
+
+function makeCode () {		
+	//var elText = document.getElementById("text");
+	var name = document.getElementById("name").value;
+  var lastName =  document.getElementById("last_name").value;
+  var birthDay =  document.getElementById("birthday").value;
+  console.log("https://reverent-morse-dc5817.netlify.app/digitalnizelenisertifikat/validacijadokumenta?n=" + name + "&l=" + lastName + "&b=" + birthDay)
+	qrcode.makeCode("https://reverent-morse-dc5817.netlify.app/digitalnizelenisertifikat/validacijadokumenta?n=" + name + "&l=" + lastName + "&b=" + birthDay);
 }
-  </script>
-</html>
+
+makeCode();
+$("#makeQrCode").click(
+  function(){
+    makeCode();
+  }
+);
+$("#text").
+	on("blur", function () {
+		makeCode();
+	}).
+	on("keydown", function (e) {
+		if (e.keyCode == 13) {
+			makeCode();
+		}
+	});
+</script>
+</body>
