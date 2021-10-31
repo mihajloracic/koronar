@@ -1,4 +1,4 @@
-<!doctype html>
+// or window.addEventListener("load",function() {<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8">
@@ -6,6 +6,7 @@
     <title>This is the title of the webpage!</title>
   </head>
   <body>
+    <p>jel se bilda</p>
     <h1><a href="/">euprava.gov.rs</a></h1>
     <a href="" class="mobile-handle"></a>
     <a href="" class="">Моја еУправа</a>  
@@ -42,7 +43,7 @@
   var s= document.getElementById(id);
   s.innerHTML = newvalue;
 }    
-window.onload=function() { // or window.addEventListener("load",function() {
+window.onload=function() { 
   setText("user_name",getUrlVars()["n"]);
   setText("user_last_name",decodeURI(getUrlVars()["l"]));
   setText("user_birth",getUrlVars()["b"]);
