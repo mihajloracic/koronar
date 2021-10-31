@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="eUprava_files/app_002.css">
+    <title>This is the title of the webpage!</title>
+  </head>
+  <body>
+    <h1><a href="/">euprava.gov.rs</a></h1>
+    <a href="" class="mobile-handle"></a>
+    <a href="" class="">Моја еУправа</a>  
+    <h2 class="to-center main-text">Дигитални зелени сертификат</h2>
+    <p class="to-center h3 small-text">Потврда о извршеној вакцинацији против COVID-19 и резултатима тестирања</p>
+    <h2 class="to-center main-text">Digital green certificate</h2>
+    <p class="to-center h3 small-text textMargin">Certificate of vaccination against COVID-19 and test results</p>
+    <div class="info-container">
+        <div class="container-row">
+            <label class="label-info">Име / Name:</label><span id="user_name" class="span-info"></span>
+        </div>
+        <div class="container-row">
+            <label class="label-info">Презиме / Surname:</label><span id="user_last_name" class="span-info"></span>
+        </div>
+        <div class="container-double-row">
+            <label class="label-info">Датум рођења / Date of birth:</label><span id="user_birth" class="span-infoBD"></span>
+        </div>
+        <div class="container-row">
+            <label class="label-info">Статус / Status:</label><span class="span-info">зелено / green</span><img class="imgType" src="/eUprava_files/passed.png">
+        </div>
+    </div>
+
+  </body>
+  <script>
+    function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
+    function(m,key,value) {
+      vars[key] = value;
+    });
+    return vars;
+  }
+  function setText(id,newvalue) {
+  var s= document.getElementById(id);
+  s.innerHTML = newvalue;
+}    
+window.onload=function() { // or window.addEventListener("load",function() {
+  setText("user_name",getUrlVars()["n"]);
+  setText("user_last_name",decodeURI(getUrlVars()["l"]));
+  setText("user_birth",getUrlVars()["b"]);
+}
+  </script>
+</html>
